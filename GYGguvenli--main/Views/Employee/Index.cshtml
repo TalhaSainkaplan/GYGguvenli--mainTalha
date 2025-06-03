@@ -1,0 +1,39 @@
+@model List<SecureEmployeeManagement.Models.Employee>
+@using Microsoft.AspNetCore.Authorization
+@using System.Security.Claims
+@using System.Text.Encodings.Web
+@inject IHttpContextAccessor HttpContextAccessor
+
+@if (HttpContextAccessor.HttpContext.User.IsInRole("Admin"))
+{
+    <a href="/Employee/Create" class="btn btn-primary">Yeni Çalışan Ekle</a>
+}
+
+<h2>Personel Listesi</h2>
+
+<a class="btn btn-success mb-3" asp-action="Create">Yeni Personel Ekle</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ad Soyad</th>
+            <th>Bölüm</th>
+            <th>Pozisyon</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model)
+        {
+            <tr>
+                <td>@HtmlEncoder.Default.Encode(emp.FullName ?? string.Empty)</td>
+                <td>@HtmlEncoder.Default.Encode(emp.Department ?? string.Empty)</td>
+                <td>@HtmlEncoder.Default.Encode(emp.Position ?? string.Empty)</td>
+                <td>
+                    <a href="/Employee/Edit/@emp.Id">Düzenle</a> |
+                    <a href="/Employee/Delete/@emp.Id">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

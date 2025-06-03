@@ -1,0 +1,16 @@
+@{
+    ViewData["Title"] = "XML Bomb Test";
+}
+
+<h2>XML Dosyası Yükle</h2>
+
+<form method="post" enctype="multipart/form-data">
+    <input type="file" name="xmlFile" class="form-control" />
+    <br />
+    <button type="submit" class="btn btn-danger">Yükle</button>
+</form>
+
+@if (ViewBag.Result != null)
+{
+    <div class="alert alert-info mt-3">@ViewBag.Result</div>
+}

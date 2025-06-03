@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!DOCTYPE bomb [
+ <!ENTITY a "lol">
+ <!ENTITY b "&a;&a;&a;&a;&a;&a;&a;&a;">
+ <!ENTITY c "&b;&b;&b;&b;&b;&b;&b;&b;">
+]>
+<login>
+  <username>&c;</username>
+  <password>1234</password>
+</login>
